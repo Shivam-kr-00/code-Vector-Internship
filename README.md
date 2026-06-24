@@ -294,3 +294,42 @@ LIMIT $4;
     -   `DATABASE_URL` = `postgres://your_neon_url_here?sslmode=require`
     -   `DB_POOL_MAX` = `10`
 5.  Deploy the service. Render will automatically verify the `/health` endpoint to confirm the service is live.
+
+---
+
+## 📝 Submission Notes
+
+### What I Chose and Why
+
+I built this project using Node.js, Express.js, PostgreSQL, and Neon.
+
+I chose Node.js and Express because I am most comfortable with JavaScript and have previously built projects using the MERN stack. For the database, I chose PostgreSQL on Neon because this assignment involves handling a large dataset and efficient pagination.
+
+For pagination, I used cursor-based pagination instead of offset-based pagination. The main reason was the assignment requirement that users should not see duplicate products or miss products when new products are added while browsing. Using `created_at` and `id` as the cursor allows pagination to remain consistent even when data changes.
+
+To generate the required 200,000 products, I created a seed script that inserts records in batches of 5,000 instead of inserting one record at a time. This significantly reduces the number of database queries and makes the seeding process much faster.
+
+### What I Would Improve With More Time
+
+If I had more time, I would focus on improvements that would make the project easier to maintain and demonstrate:
+
+* Add automated tests for product listing, filtering, and cursor pagination.
+* Build a simple frontend UI to visually browse products and test pagination.
+* Add Swagger/OpenAPI documentation for easier API exploration.
+* Add Docker configuration for simpler deployment and setup.
+* Add request monitoring and better production logging.
+* Perform load testing and benchmark the pagination queries under higher traffic.
+
+My main focus for this submission was ensuring that the backend correctly handles large datasets and provides consistent pagination while data changes.
+
+### How I Used AI
+
+I used AI as a learning and development assistant during this assignment.
+
+This was my first time working with PostgreSQL and Neon. AI helped me understand PostgreSQL concepts, connection pooling, indexing, schema creation, batch inserts, and cursor pagination. It also helped generate boilerplate code and explain unfamiliar concepts.
+
+However, I did not rely solely on generated code. I reviewed the implementation, tested all API endpoints, verified the database behavior, studied the seed script, and learned how the cursor pagination logic works so that I can explain and modify the code myself.
+
+During development I encountered issues that required debugging and manual verification, such as request validation problems and understanding how PostgreSQL differs from MongoDB. I used these situations as opportunities to learn rather than simply replacing code.
+
+This assignment helped me gain hands-on experience with PostgreSQL, Neon, connection pooling, indexing, batch inserts, and cursor-based pagination, which were all new concepts for me before starting this project.

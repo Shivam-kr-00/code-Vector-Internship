@@ -22,6 +22,17 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'UP', timestamp: new Date() });
 });
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Welcome to the Fast Pagination Product Catalog API',
+    endpoints: {
+      health: '/health',
+      products: '/api/v1/products'
+    }
+  });
+});
+
 app.use('/api/v1', productRoutes);
 
 app.use((req, res, next) => {
